@@ -13,7 +13,7 @@ class NewUser extends Component {
     let username = "David";
     let email = "dav@gmail.com";
     let password = "david";
-    let index = 1;
+    let index = 0;
     fetch('http://localhost:5000/users/create', {
       method: "POST",
       body: JSON.stringify({

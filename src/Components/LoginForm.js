@@ -3,8 +3,8 @@ import React from 'react';
 
 //let username = "IciCParis";
 let token = "";
-let email = "dummy_0";
-let password = "dummy";
+let email = "dav@gmail.com";
+let password = "david";
 let address =""
 let userData = ""
 let user = ""
@@ -15,7 +15,7 @@ let name = "myFirstContract"
 let description = "Les poneys sont généreux"
 let endDate = "12/12/2012"
 let userId = "0"
-let proposals = [{address: "0xZIDJDF", name: "Dumdum"}, {address: "0xPONEY", name: "DoumDoum"}]
+
 
 function LoginButton(props) {
   return (
@@ -114,13 +114,14 @@ event.preventDefault();
 }
 
 createContract = () => {
+  let proposals = [{address: address, name: "Dumdum"}, {address: address, name: "DoumDoum"}]
   fetch('http://localhost:5000/contracts/create', {
   method: "POST",
   body: JSON.stringify({
     "name": name,
     "description": description,
     "end_date": endDate,
-    "user_id": address,
+    "user": userData,
     "proposals": proposals
   }),
   headers: {
