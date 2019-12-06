@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Navbar, InputGroup, FormControl, Button, Nav, NavDropdown } from 'react-bootstrap';
+import { Form, Navbar, Button, Nav, NavDropdown } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 
 const MaNav = (props) => {
@@ -11,12 +11,9 @@ const MaNav = (props) => {
     <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
         <Nav.Link href=" /Votes">Les sondages</Nav.Link>
-        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+        <NavDropdown title="Gestion utilisateur" id="basic-nav-dropdown">
+            <NavDropdown.Item href="/Users">Liste des utilisateurs</NavDropdown.Item>
+            <NavDropdown.Item href="/NewUser">Créer un utilisateur</NavDropdown.Item>
         </NavDropdown>
         </Nav>
         <Form inline>
