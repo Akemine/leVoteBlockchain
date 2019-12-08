@@ -1,68 +1,79 @@
-import React from 'react';
-import { Card, CardDeck} from 'react-bootstrap';
+import React, { Component } from 'react';
+import {withRouter} from 'react-router'
+import { Link } from "react-router-dom";
+import { Button } from 'react-bootstrap'
+import DetailsVote from './DetailsVote';
+import {BrowserRouter, Route } from 'react-router-dom';
 
-const Infos = (props) => {
-    return( 
-        <div className="container">
-            
-        <CardDeck>
-            <Card>
-                <Card.Img variant="top" src="holder.js/100px160" />
-                <Card.Body>
-                <Card.Title>Card title</Card.Title>
-                <Card.Text>
-                    This is a wider card with supporting text below as a natural lead-in to
-                    additional content. This content is a little bit longer.
-                </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-            </Card>
-            <Card>
-                <Card.Img variant="top" src="holder.js/100px160" />
-                <Card.Body>
-                <Card.Title>Card title</Card.Title>
-                <Card.Text>
-                    This card has supporting text below as a natural lead-in to additional
-                    content.{' '}
-                </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-            </Card>
-            <Card>
-                <Card.Img variant="top" src="holder.js/100px160" />
-                <Card.Body>
-                <Card.Title>Card title</Card.Title>
-                <Card.Text>
-                    This is a wider card with supporting text below as a natural lead-in to
-                    additional content. This card has even longer content than the first to
-                    show that equal height action.
-                </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-            </Card>
-            <Card>
-                <Card.Img variant="top" src="holder.js/100px160" />
-                <Card.Body>
-                <Card.Title>Card title</Card.Title>
-                <Card.Text>
-                    This is a wider card with supporting text below as a natural lead-in to
-                    additional content. This card has even longer content than the first to
-                    show that equal height action.
-                </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-            </Card>
-        </CardDeck>
-        </div>
-        );
-    };
+class Votes extends Component {
+
+    constructor(props){
+        super(props);
     
-    export default Infos;
+        this.state = {
+          items: [],
+          isLoaded: false,
+        }
+      }
+
+    componentDidMount() {
+        fetch('http://localhost:5000/contracts/all', {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept-Encoding": "gzip , deflate, br",
+            "sec-fetch-mode": "no-cors",
+            "Access-Control-Request-Headers": "content-type",
+            "Access-Control-Request-Method": "GET",
+            "Access-Control-Allow-Origin": "*"
+          }
+        })
+        .then(res => res.json())
+        .then(json => {
+          this.setState({
+            isLoaded: true,
+            items: json["data"]
+          })
+        })
+      }
+
+    render(){
+        console.log(this.state)
+        var {isLoaded, items} = this.state; 
+
+      if (!isLoaded){
+        return <div>Loading...</div>
+      }
+      else {
+
+        //console.table(items)
+      return (
+
+        <div className="App">
+        
+         <div className="container">
+        <Button href=" /CreateVote">Créer un vote
+        
+        </Button>
+        
+        
+
+        </div>
+        <ul> 
+          {items.map(item => (
+            <a href={"/DetailsVote?address=" + item.address + ""}> <li key={item.address}>{item.name}</li></a>
+
+          ))}
+        </ul>
+  
+        <div className="container">
+    
+        </div>
+        <DetailsVote />
+        </div>
+        )
+    }
+}
+}
+    
+    export default (withRouter(Votes));

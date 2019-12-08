@@ -1,21 +1,36 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-
+import {BrowserRouter, Route } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import Post from '.\\Post.js';
+//let userData = ""
 
 class Home extends Component{
-    render(){
+    
+    render(){   
+        console.log(this.state)
         const { posts} = this.props; // info du magasin
+
         const postData = posts.length ? (
             posts.map(post => {
                 return (
+                    <div>
+                    <BrowserRouter>
+                    
+                    
                     <div className="base" key={post.id}>
+                    <Route path="/:post_id" component={Post}/>
+                    <Link to={"/" + post.id}>
                     <h2>{post.title}</h2>
+                    </Link> 
                     <p>{post.body}</p>
+                    </div>
+                    </BrowserRouter>
                     </div>
                     )
                 })
                 ) : (
-                    <p>Aucun article pour le moment</p>
+                    <p>Il n'y a aucun article en cours</p>
                     )
                     return (
                         <div className="home">
@@ -26,7 +41,7 @@ class Home extends Component{
                     }
                 }
                 
-                const mapStateToProps = state => {
+                const mapStateToProps = (state) => {
                     return {
                         posts: state.posts
                     }
