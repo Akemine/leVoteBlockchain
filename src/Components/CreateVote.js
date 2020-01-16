@@ -1,8 +1,10 @@
 import React from 'react'
 import { Button, Form } from 'react-bootstrap'
+import LoginForm from '.\\LoginForm'
+import { connect } from 'react-redux'
 
 let address = ""
-let token = "0x14f021B82a5752C7f0bBb1d5eF5f7bD4b22e4070"
+let token = "0xE6244d9885F8a44FD9E1d47dB8863F5CEf5e5940"
 let userData = ""
 let isConnected = false
 let description= ""
@@ -91,11 +93,8 @@ function VoteCreated(props) {
 
     butTest = <ButTest onClick={this.handleproposalOne}/>
     button = <VoteCreated onClick={this.handleSubmit} />
-    if (isConnected) {
-      this.props.history.push("/")
-      
-    } else {
-    }
+
+    if(this.props.ConnectState == true){
     return (
       
       <div className="container">
@@ -119,7 +118,21 @@ function VoteCreated(props) {
       </div>
       )
     }
+    else {
+      return(
+        <LoginForm />
+      )
+    }
+    }
+  }
+
+  
+  const mapStateToProps = state => {
+    return {
+      ConnectState: state.ConnectState
+    }
   }
   
-  export default (CreateVote);
+  
+  export default connect(mapStateToProps)(CreateVote);
   

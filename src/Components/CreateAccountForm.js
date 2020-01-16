@@ -1,27 +1,14 @@
 import React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap'
+import { connect } from 'react-redux'
 
-// let username = "IciCParis";
-// let token = "";
-// let email = "dav@gmail.com";
-// let password = "david";
-
-// let userData = ""
-// let user = ""
-// let index = 1;
-//let address =""
-
-
-function LoginButton(props) {
-    return (
-        <Button onClick={props.onClick}>
-        Créer mon compte
-        </Button>
-        );
-    }
-    
         
         class CreateAccountForm extends React.Component {
+
+            ConnectClick = () => {
+                this.props.Logged()
+                console.log(this.props.ConnectState)
+              }
             
             constructor(props) {
                 super(props);
@@ -72,16 +59,7 @@ function LoginButton(props) {
         
         
         render(){
-            const isConnected = this.state.isConnected;
-            let button;
-        
-            button = <LoginButton onClick={this.handleSubmit} />;
-            if (isConnected) {
-              this.props.history.push("/")
-              
-            } else {
-              
-            }
+
             return (
                 <div className="container">
                 <Form>
@@ -100,12 +78,26 @@ function LoginButton(props) {
                 <Form.Label>Mot de passe</Form.Label>
                 <Form.Control type="password" placeholder="Entrer votre mot de passe" value={this.state.password} onChange={this.handlePassword}/>
                 </Form.Group>
-                {button}
+                <button onClick={this.ConnectClick}>Je me connecte</button>
                 </Form>
                 </div> 
                 )
             }
         }
+
+        const mapStateToProps = state => {
+            return {
+              ConnectState: state.ConnectState
+            }
+          }
+          
+           const mapDispatchToProps = dispatch => {
+             return {
+              Logged: isConnected => {
+                dispatch({type: "USER_CONNECTED", ConnectState: true})
+               }
+             }
+           }
         
-        export default CreateAccountForm;
+        export default connect(mapStateToProps, mapDispatchToProps)(CreateAccountForm);
         

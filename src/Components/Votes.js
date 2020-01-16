@@ -3,7 +3,10 @@ import {withRouter} from 'react-router'
 import { Link } from "react-router-dom";
 import { Button } from 'react-bootstrap'
 import DetailsVote from './DetailsVote';
+import { connect } from 'react-redux'
 import {BrowserRouter, Route } from 'react-router-dom';
+import LoginForm from '.\\LoginForm';
+
 
 class Votes extends Component {
 
@@ -34,6 +37,7 @@ class Votes extends Component {
             isLoaded: true,
             items: json["data"]
           })
+          
         })
       }
 
@@ -47,14 +51,13 @@ class Votes extends Component {
       else {
 
         //console.table(items)
-      return (
+        if(this.props.ConnectState == true){
+        return (
 
         <div className="App">
         
          <div className="container">
-        <Button href=" /CreateVote">Créer un vote
-        
-        </Button>
+        <Button href=" /CreateVote">Créer un vote</Button>
         
         
 
@@ -62,18 +65,32 @@ class Votes extends Component {
         <ul> 
           {items.map(item => (
             <a href={"/DetailsVote?address=" + item.address + ""}> <li key={item.address}>{item.name}</li></a>
-
           ))}
         </ul>
   
         <div className="container">
     
         </div>
-        <DetailsVote />
         </div>
         )
+          }
+          else {
+            return (
+              <LoginForm />
+              )
+          }
     }
+
+
 }
+
+
 }
+
+    const mapStateToProps = state => {
+      return {
+        ConnectState: state.ConnectState
+      }
+    }
     
-    export default (withRouter(Votes));
+    export default connect(mapStateToProps)(withRouter(Votes));

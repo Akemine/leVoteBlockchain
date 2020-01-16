@@ -9,7 +9,6 @@ class Post extends Component{
         this.props.history.push("/")
     }
     render(){   
-        console.log(this.props)
         const post = this.props.post ? (
                     <div className="post">
                     <h2>{this.props.post.title}</h2>
@@ -30,7 +29,7 @@ class Post extends Component{
                 const mapStateToProps = (state, ownProps) => {
                     let id = ownProps.match.params.post_id
                     return {
-                        post: state.posts.find(post => post.id === id)
+                       // post: state.posts.find(post => post.id === id)
                     }
                 }
 

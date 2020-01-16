@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap'
 import LoginForm from '.\\LoginForm';
 
 
+
 //let userData = ""
 
 class DetailsVote extends Component{
@@ -18,7 +19,7 @@ class DetailsVote extends Component{
       }
 
     componentDidMount() {
-        fetch('http://localhost:5000/contracts/all', {
+        fetch('http://localhost:5000/contracts/0xBA0A989Ff0fC8485C865D98551645918A363adAf', {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -56,13 +57,13 @@ class DetailsVote extends Component{
                 
                 <div className="home">
                 {items.map(item => (
-            
+
                         <p key={item.address}>{item.name}</p>
-                
+                        
                         )
                     )
                 }
-                {/* <DetailsVote /> */}
+                
                 </div>
                 )
                     }
@@ -70,4 +71,4 @@ class DetailsVote extends Component{
                 
                 
                 
-                export default DetailsVote
+                export default (withRouter(DetailsVote))

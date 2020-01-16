@@ -53,6 +53,11 @@ class LoginForm extends React.Component {
     console.log(this.props.ConnectState)
   }
 
+  DisconnectClick = () => {
+    this.props.Unlogged()
+    console.log(this.props.ConnectState)
+  }
+
   handleSubmit = (event) => {
     fetch('http://localhost:5000/auth/login', {
     method: "POST",
@@ -92,12 +97,14 @@ class LoginForm extends React.Component {
 
     button = <LoginButton onClick={this.handleSubmit} />;
     if (isConnected) {
-      //this.props.history.push("/")
-      
+      this.props.Logged()
+      this.props.history.push("/")
     } else {
+      this.props.Unlogged()
     }
-   return (
 
+    if(this.props.ConnectState == false){
+   return (
        <div className="container">
        <Form>
        <Form.Group >
@@ -114,9 +121,34 @@ class LoginForm extends React.Component {
        {button}
        
        </Form>
-       <button onClick={this.ConnectClick}>Suis-je connecté ?</button>
+       <button onClick={this.ConnectClick}>Je me connecte</button>
+       
         </div>
      )
+   }
+   else {
+    return(
+      <div className="container">
+      <Form>
+      <Form.Group >
+      <Form.Label>Adresse Email</Form.Label>
+      <Form.Control type="email" placeholder="Entrer votre adresse Email" value={this.state.value} onChange={this.handleEmail}/>
+      <Form.Text className="text-muted">
+      Ne partagez jamais votre adresse Email !
+      </Form.Text>
+      </Form.Group>
+      <Form.Group controlId="formBasicPassword">
+      <Form.Label>Mot de passe</Form.Label>
+      <Form.Control type="password" placeholder="Entrer votre mot de passe" value={this.state.password} onChange={this.handlePassword}/>
+      </Form.Group>
+      {button}
+      </Form>
+      <button onClick={this.DisconnectClick}>Je me deconnecte !</button>
+      
+       </div>
+      )
+   }
+
    }
 }
 
@@ -129,8 +161,12 @@ const mapStateToProps = state => {
  const mapDispatchToProps = dispatch => {
    return {
     Logged: isConnected => {
-      dispatch({type: "USER_CONNECTED", ConnectState: true})
-     }
+      dispatch({type: "USER_CONNECTED", ConnectState: true, token: token})
+     },
+
+    Unlogged: isConnected => {
+      dispatch({type: "USER_DISCONNECTED", ConnectState: false})
+    }
    }
  }
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

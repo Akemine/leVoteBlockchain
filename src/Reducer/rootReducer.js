@@ -1,5 +1,6 @@
 const initState = {
     ConnectState: false,
+    token: "",
     posts: [
         {
             id: "1",
@@ -37,9 +38,17 @@ const rootReducer = (state = initState, action) => {
 
     if(action.type === "USER_CONNECTED"){
         return {
-            ConnectState: true
+            ConnectState: true,
+            token: "test"
         }
     }
+
+    if(action.type === "USER_DISCONNECTED"){
+        return {
+            ConnectState: false
+        }
+    }
+
     return state;
 }
 

@@ -28,7 +28,7 @@ function App() {
     <Navbar/>
     {/* <Route path="/Test" component={Test}/> */}
     
-    <Route exact path="/" component={Home}/>
+    <Route exact path="/"/>
     <Route path="/Votes" component={Votes}/>
     <Route path="/LoginForm" exact component={LoginForm}/>
     <Route path="/CreateAccountForm" component={CreateAccountForm}/>
@@ -36,7 +36,7 @@ function App() {
     <Route path="/NewUser" component={NewUser}/>
     <Route path="/FakerTest" component={FakerTest}/>
     <Route path="/CreateVote" component={CreateVote}/>
-    
+    <Route path="/DetailsVote" component={DetailsVote}/>
     
     </div>
     </BrowserRouter>

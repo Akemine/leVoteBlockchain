@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import LocalStorage from '.\\LocalStorage.js';
 import { Button, Form } from 'react-bootstrap'
 import {withRouter} from 'react-router'
+import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom';
+import LoginForm from './LoginForm.js';
 
 
 const myBut = withRouter(({ history }) => (
@@ -72,6 +74,7 @@ class Users extends Component {
       }
       else {
         console.table(items)
+        if(this.props.ConnectState == true){
         return (
           <div>
 
@@ -93,9 +96,21 @@ class Users extends Component {
         </div>
         </div>
       )
+            }
+            else {
+              return(
+                <LoginForm />
+              )
+            }
     }
   }
 }
 
-export default withRouter(Users);
+const mapStateToProps = state => {
+  return {
+    ConnectState: state.ConnectState
+  }
+}
+
+export default connect(mapStateToProps)(withRouter(Users));
 

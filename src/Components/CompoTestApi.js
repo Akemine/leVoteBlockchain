@@ -150,10 +150,7 @@ createContract = () => {
     console.log(description)
     console.log(endDate)
     console.log(userData)
-    // console.log(name)
-    // console.log(description)
-    // console.log(endDate)
-    // console.log(address)
+
     console.table(proposals)
     console.log("Vous avez créé un contract.")
   console.log()
