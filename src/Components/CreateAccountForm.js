@@ -2,9 +2,17 @@ import React from 'react';
 import { Button, Form } from 'react-bootstrap'
 import { connect } from 'react-redux'
 
-        
+        function CreateAccount(props) {
+            return (
+            <Button onClick={props.onClick}>
+                Connexion
+            </Button>
+            );
+        }
+
         class CreateAccountForm extends React.Component {
 
+  
             ConnectClick = () => {
                 this.props.Logged()
                 console.log(this.props.ConnectState)
@@ -60,6 +68,7 @@ import { connect } from 'react-redux'
         
         render(){
 
+            let button = <CreateAccount onClick={this.handleSubmit} />;
             return (
                 <div className="container">
                 <Form>
@@ -78,7 +87,7 @@ import { connect } from 'react-redux'
                 <Form.Label>Mot de passe</Form.Label>
                 <Form.Control type="password" placeholder="Entrer votre mot de passe" value={this.state.password} onChange={this.handlePassword}/>
                 </Form.Group>
-                <button onClick={this.ConnectClick}>Je me connecte</button>
+                {button}
                 </Form>
                 </div> 
                 )

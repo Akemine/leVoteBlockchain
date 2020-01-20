@@ -5,8 +5,8 @@ const faker = require('faker');
 
 //let username = "IciCParis";
 let token = "";
-let email = "dummy_B";
-let password = "dummy_B";
+let email = "dav@gmail.com";
+let password = "david";
 let address =""
 let userData = ""
 
@@ -149,8 +149,7 @@ createContract = () => {
     console.log(name)
     console.log(description)
     console.log(endDate)
-    console.log(userData)
-
+    console.log(address)
     console.table(proposals)
     console.log("Vous avez créé un contract.")
   console.log()

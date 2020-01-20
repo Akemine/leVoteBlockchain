@@ -3,13 +3,6 @@ import { Button, Form } from 'react-bootstrap'
 import LoginForm from '.\\LoginForm'
 import { connect } from 'react-redux'
 
-let address = ""
-let token = "0xE6244d9885F8a44FD9E1d47dB8863F5CEf5e5940"
-let userData = ""
-let isConnected = false
-let description= ""
-let firstName= ""
-let name =" "
 
 function ButTest(props) {
   return (
@@ -30,7 +23,7 @@ function VoteCreated(props) {
   let day = new Date().getDate() //Current Date
   let month = new Date().getMonth() + 1 //Current Date
   let year = new Date().getFullYear()
-  let endDate = "0"+day + "/0" + month + "/" +year 
+  let endDate = ""+day + "/0" + month + "/" +year 
   
   class CreateVote extends React.Component {
     s
@@ -64,29 +57,36 @@ function VoteCreated(props) {
     
     
     handleSubmit = (event) => {
-      let proposals = [this.state.proposalTwo, this.state.proposalTwo] 
+      let proposals = []
+      proposals = [this.state.proposalOne, this.state.proposalTwo] 
       fetch('http://localhost:5000/contracts/create', {
       method: "POST",
       body: JSON.stringify({
         "name": this.state.nameVote,
         "description": this.state.description,
         "end_date": endDate,  
-        "user_address": token,
+        "user_address": this.props.Address_User,
         "proposals": proposals
       }),
       headers: {
         "Content-Type": "application/json",
         "Accept-Encoding": "gzip , deflate, br",
         "sec-fetch-mode": "no-cors",
+        "Authorization": this.props.Token,
         "Access-Control-Request-Headers": "content-type",
         "Access-Control-Request-Method": "POST",
         "Access-Control-Allow-Origin": "*"
       }
     })
+    console.log(this.state.nameVote)
+    console.log(this.state.description)
+    console.log(endDate)
+    console.log(this.props.Address_User)
+    console.log(proposals)
     event.preventDefault();
   }
   render(){
-
+    console.log(this.props.Token)
   
     let button
     let butTest
@@ -129,7 +129,9 @@ function VoteCreated(props) {
   
   const mapStateToProps = state => {
     return {
-      ConnectState: state.ConnectState
+      ConnectState: state.ConnectState,
+      Token: state.Token,
+      Address_User: state.Address_User
     }
   }
   

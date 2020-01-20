@@ -12,6 +12,7 @@ import CreateVote from '.\\Components/CreateVote.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CreateAccountForm from '.\\Components/CreateAccountForm.js';
 import DetailsVote from '.\\Components/DetailsVote.js';
+import AVoter from '.\\Components/AVoter.js';
 //import Test from '.\\Components/Test.js';
 
 
@@ -29,6 +30,7 @@ function App() {
     {/* <Route path="/Test" component={Test}/> */}
     
     <Route exact path="/"/>
+    <Route path="/AVoter" component={AVoter}/>
     <Route path="/Votes" component={Votes}/>
     <Route path="/LoginForm" exact component={LoginForm}/>
     <Route path="/CreateAccountForm" component={CreateAccountForm}/>

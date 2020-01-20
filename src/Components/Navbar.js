@@ -5,8 +5,6 @@ import CompoTestApi from '.\\CompoTestApi.js'
 import { connect } from 'react-redux'
 
 
-
-
 class MaNav extends React.Component {
 
     DisconnectClick = () => {
@@ -15,8 +13,7 @@ class MaNav extends React.Component {
       }
 
     render(){
-      //  const {IsConnected} = this.props; // info du magasin
-     console.log(this.props.token);
+
      if(this.props.ConnectState == false){
     return( 
     <Navbar bg="light" expand="lg">
@@ -70,13 +67,14 @@ class MaNav extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        ConnectState: state.ConnectState
+        ConnectState: state.ConnectState,
+        Token: state.Token,
+        Address_User: state.Address_User
     }
   }
 
   const mapDispatchToProps = dispatch => {
     return {
- 
      Unlogged: isConnected => {
        dispatch({type: "USER_DISCONNECTED", ConnectState: false})
      }

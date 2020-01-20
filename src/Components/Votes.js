@@ -8,8 +8,10 @@ import {BrowserRouter, Route } from 'react-router-dom';
 import LoginForm from '.\\LoginForm';
 
 
+
 class Votes extends Component {
 
+    
     constructor(props){
         super(props);
     
@@ -18,7 +20,7 @@ class Votes extends Component {
           isLoaded: false,
         }
       }
-
+      
     componentDidMount() {
         fetch('http://localhost:5000/contracts/all', {
           method: "GET",
@@ -42,9 +44,9 @@ class Votes extends Component {
       }
 
     render(){
-        console.log(this.state)
+       
         var {isLoaded, items} = this.state; 
-
+      console.log(this.state.items)
       if (!isLoaded){
         return <div>Loading...</div>
       }
@@ -65,7 +67,9 @@ class Votes extends Component {
         <ul> 
           {items.map(item => (
             <a href={"/DetailsVote?address=" + item.address + ""}> <li key={item.address}>{item.name}</li></a>
+            
           ))}
+          
         </ul>
   
         <div className="container">
@@ -89,8 +93,23 @@ class Votes extends Component {
 
     const mapStateToProps = state => {
       return {
-        ConnectState: state.ConnectState
+        ConnectState: state.ConnectState,
+        Token: state.Token,
+        Address_User: state.Address_User,
+      }
+    }
+
+    const mapDispatchToProps = dispatch => {
+      return {
+       Logged: isConnected => {
+         dispatch({type: "USER_CONNECTED", ConnectState: true})
+         
+        },
+   
+       Unlogged: isConnected => {
+         dispatch({type: "USER_DISCONNECTED", ConnectState: false, Token: "disconnected", Address_User: "disconnected"})
+       }
       }
     }
     
-    export default connect(mapStateToProps)(withRouter(Votes));
+    export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Votes));

@@ -83,7 +83,7 @@ class LoginForm extends React.Component {
     console.log(token)
     console.log("Vous êtes connecté.")
     this.setState({isConnected: true})
-    console.log(this.state)
+    //console.log(this.state)
   })
   event.preventDefault();
 }
@@ -96,9 +96,9 @@ class LoginForm extends React.Component {
     let button;
 
     button = <LoginButton onClick={this.handleSubmit} />;
-    if (isConnected) {
+    if (isConnected == true) {
       this.props.Logged()
-      this.props.history.push("/")
+      console.log(this.props);
     } else {
       this.props.Unlogged()
     }
@@ -154,18 +154,20 @@ class LoginForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    ConnectState: state.ConnectState
+    ConnectState: state.ConnectState,
+    Token: state.Token,
+    Address_User: state.Address_User
   }
 }
 
  const mapDispatchToProps = dispatch => {
    return {
     Logged: isConnected => {
-      dispatch({type: "USER_CONNECTED", ConnectState: true, token: token})
+      dispatch({type: "USER_CONNECTED", ConnectState: true, Token: token, Address_User: address})
      },
 
     Unlogged: isConnected => {
-      dispatch({type: "USER_DISCONNECTED", ConnectState: false})
+      dispatch({type: "USER_DISCONNECTED", ConnectState: false, Token: "disconnected", Address_User: "disconnected"})
     }
    }
  }

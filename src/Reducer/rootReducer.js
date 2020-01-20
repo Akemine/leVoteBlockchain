@@ -1,6 +1,8 @@
 const initState = {
+    
     ConnectState: false,
-    token: "",
+    Token: "token_vide",
+    Address_User: "address_user_vide",
     posts: [
         {
             id: "1",
@@ -39,7 +41,8 @@ const rootReducer = (state = initState, action) => {
     if(action.type === "USER_CONNECTED"){
         return {
             ConnectState: true,
-            token: "test"
+            Token: action.Token,
+            Address_User: action.Address_User
         }
     }
 
