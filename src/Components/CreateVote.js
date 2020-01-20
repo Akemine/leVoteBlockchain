@@ -60,7 +60,7 @@ function VoteCreated(props) {
       let proposals = []
       proposals = [this.state.proposalOne, this.state.proposalTwo] 
       fetch('http://localhost:5000/contracts/create', {
-      method: "POST",
+      method: "PUT",
       body: JSON.stringify({
         "name": this.state.nameVote,
         "description": this.state.description,

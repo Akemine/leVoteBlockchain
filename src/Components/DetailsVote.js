@@ -6,18 +6,11 @@ import LoginForm from '.\\LoginForm';
 import { connect } from 'react-redux'
 import AVoter from './AVoter';
 
+import Swal from 'sweetalert2'
+
+
 
 //let userData = ""
-
-
-function VoteButton(props) {
-  return (
-    <Button onClick={props.onClick}>
-      {console.log(props.id)}
-      
-    </Button>
-  )
-}
 let id = 0
 
 class DetailsVote extends Component{
@@ -26,6 +19,7 @@ class DetailsVote extends Component{
     
         this.state = {
           vote :  this.props.location.search.substr(9, 100),
+          vote_count: [],
           items: [],
           isLoaded: false,
           nameVote: ""
@@ -50,18 +44,19 @@ class DetailsVote extends Component{
           this.setState({
             isLoaded: true,
             nameVote: json ["name"],
-            items: json["_proposals"]
+            items: json["_proposals"],
+            vote_count: json["_proposals"]["vote_count"]
           })
         })
         console.log("props : " + this.state)
       }
 
-      handleSubmit = (event) => {
+       handleSubmit = (event) => {
         fetch("http://localhost:5000/contracts/" + this.state.vote, {
           method: "POST",
           body: JSON.stringify({
             "user_address" : this.props.Address_User,
-            "proposal_index": 1
+            "proposal_index": parseInt(event.target.id)
           }),
           headers: {
             "Content-Type": "application/json",
@@ -74,9 +69,35 @@ class DetailsVote extends Component{
           }
         }).then(response => response.json())
         .then(response => {
-          
 
         })
+        // let timerInterval
+        // Swal.fire({
+        //   title: 'Nous sécurisons votre vote !',
+        //   html: 'Fin dans <b></b> ms.',
+        //   timer: 20000,
+        //   timerProgressBar: true,
+        //   onBeforeOpen: () => {
+        //     Swal.showLoading()
+        //     timerInterval = setInterval(() => {
+        //       if (Swal.getContent()) {
+        //         Swal.getContent().querySelector('b')
+        //           .textContent = Swal.getTimerLeft()
+        //       }
+        //     }, 100)
+        //   },
+        //   onClose: () => {
+        //     clearInterval(timerInterval)
+        //   }
+          
+        // }).then((result) => {
+        //   if (
+        //     /* Read more about handling dismissals below */
+        //     result.dismiss === Swal.DismissReason.timer
+        //   ) {
+        //     console.log('I was closed by the timer') // eslint-disable-line
+        //   }
+        // })
         event.preventDefault();
       }
 
@@ -87,6 +108,7 @@ class DetailsVote extends Component{
      //console.log(this.props.Address_User)
       
         var {isLoaded, items} = this.state;
+
         // const detail = this.props.detail ? (
         //     <div className="detail">
         //     <h2>{this.props.detail.adress}</h2>
@@ -97,13 +119,17 @@ class DetailsVote extends Component{
         //     <p>Le vote n'existe pas</p>
         //     )
         console.log(this.state.items)
+        if(this.props.ConnectState == true){
             return (
                 <div className="home">
                   <h2>{this.state.nameVote}</h2>
                   {items.map(item => (
+                    <div>
+                    
+                    <p><Button onClick={this.handleSubmit} vote={item.vote_count} id={item.index}>{item.name}</Button> {this.state.vote_count = item.vote_count} </p>
+                   
 
-                    <p key={item.address}>{item.name}</p>
-
+                    </div>
                     )
                     )
                     }
@@ -115,7 +141,14 @@ class DetailsVote extends Component{
                 
                 
                     }
+                    else {
+                      return(
+                        <LoginForm />
+                      )
+                    }
                 }
+              }
+                
 
                 const mapStateToProps = state => {
                   return {

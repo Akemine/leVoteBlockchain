@@ -16,8 +16,8 @@ class MaNav extends React.Component {
 
      if(this.props.ConnectState == false){
     return( 
-    <Navbar bg="light" expand="lg">
-    <Navbar.Brand href=" /">React-Bootstrap</Navbar.Brand>
+    <Navbar bg="#f8f8f8" expand="lg">
+    <Navbar.Brand href=" /">LeVote</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
@@ -40,8 +40,8 @@ class MaNav extends React.Component {
      }
      else {
         return( 
-            <Navbar bg="light" expand="lg">
-            <Navbar.Brand href=" /">React-Bootstrap</Navbar.Brand>
+            <Navbar bg="#d5853c" expand="lg">
+            <Navbar.Brand href=" /">LeVote</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
