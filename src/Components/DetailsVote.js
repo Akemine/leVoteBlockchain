@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router'
 import { Button } from 'react-bootstrap'
-import LoginForm from '.\\LoginForm';
+import LoginForm from './LoginForm';
 import { connect } from 'react-redux'
 import Apex from './ApexChart.js'
 import Chart from "react-apexcharts";
@@ -95,8 +95,8 @@ class DetailsVote extends Component{
             console.log(vote_count_array)
             return (
                 <div className="container">
-                  <h2>{this.state.nameVote}</h2>
-                  <h4>{this.state.description}</h4>
+                  <p><h2>{this.state.nameVote}</h2></p>
+                  <p><h5><i>{this.state.description}</i></h5></p>
                   <div className="row">
                     {items.map(item => (
                       

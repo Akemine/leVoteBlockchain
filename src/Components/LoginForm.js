@@ -3,8 +3,9 @@ import { Button, Form } from 'react-bootstrap'
 import { connect } from 'react-redux'
 
 let address =""
-let token = "";
+let token = ""
 let userData = ""
+let pseudo = ""
 let isConnected = false
 
 function LoginButton(props) {
@@ -67,6 +68,7 @@ class LoginForm extends React.Component {
     token = response.Authorization
     userData = JSON.parse(response.user)
     address = userData.address
+    pseudo = userData.username
     console.log(address)
     console.log(token)
     console.log("Vous êtes connecté.")
@@ -141,14 +143,15 @@ const mapStateToProps = state => {
   return {
     ConnectState: state.ConnectState,
     Token: state.Token,
-    Address_User: state.Address_User
+    Address_User: state.Address_User,
+    Pseudo: state.Pseudo
   }
 }
 
  const mapDispatchToProps = dispatch => {
    return {
     Logged: isConnected => {
-      dispatch({type: "USER_CONNECTED", ConnectState: true, Token: token, Address_User: address})
+      dispatch({type: "USER_CONNECTED", ConnectState: true, Token: token, Address_User: address, Pseudo: pseudo})
      },
 
     Unlogged: isConnected => {

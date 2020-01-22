@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Alert from 'react-bootstrap/Alert';
 import { Button } from 'react-bootstrap';
 
 
-function Bootstrap() {
+function Accueil() {
     
   return (
       
@@ -20,4 +20,4 @@ function Bootstrap() {
   )
 }
 
-export default Bootstrap;
+export default Accueil;

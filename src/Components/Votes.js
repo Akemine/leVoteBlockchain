@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import {withRouter} from 'react-router'
 import { Button, Alert} from 'react-bootstrap'
 import { connect } from 'react-redux'
-import LoginForm from '.\\LoginForm';
+import LoginForm from './LoginForm';
 import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 
 let timerInterval
 function Interval(props){
@@ -86,7 +85,7 @@ class Votes extends Component {
       else {
 
         //console.table(items)
-        if(this.props.ConnectState == true){
+
         return (
 
         <div className="App">
@@ -103,7 +102,7 @@ class Votes extends Component {
             <div className="container">
 
 
-          <Alert variant="success">
+          <Alert variant="info">
           <a class="voteItem" href={"/DetailsVote?address=" + item.address + ""}>
             <Alert.Heading>{item.name}</Alert.Heading>
             <p>
@@ -125,13 +124,7 @@ class Votes extends Component {
         </div>
         </div>
         )
-          }
-          else {
-            return (
-              <LoginForm />
-              )
-          }
-    }
+      }
 
 
 }

@@ -19,8 +19,11 @@ class Apex extends Component {
         this.state.series = this.props.series
         
         return (
-          <div className="donut">
+          <div>
+          <div class="donut pull-right">
             <Chart options={this.state.options} series={this.state.series} type="donut" width="500" />
+          </div>
+
           </div>
         );
       }

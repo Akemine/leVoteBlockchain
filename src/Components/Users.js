@@ -69,7 +69,13 @@ class Users extends Component {
       var {isLoaded, items} = this.state;
 
       if (!isLoaded){
-        return <div>Loading...</div>
+        return (
+        <div className="container">
+          <div>
+            <h2>Nous recherchons les autres membres...</h2>
+          </div>
+        </div>
+        )
       }
       else {
         console.table(items)
@@ -85,14 +91,6 @@ class Users extends Component {
           </ul>
           </div>
     
-          <div className="container">
-        <Form>
-        <Form.Group>
-        <Form.Label>Les sondages en cours :</Form.Label>
-        <Form.Control type="text" value={this.state.value} onChange={this.handleInfo}/>
-        </Form.Group>
-        </Form>
-        </div>
         </div>
       )
             }

@@ -1,12 +1,13 @@
 import React from 'react'
 import {BrowserRouter, Route } from 'react-router-dom'
-import Navbar from '.\\Components/Navbar.js'
-import Votes from '.\\Components/Votes.js'
-import LoginForm from '.\\Components/LoginForm.js'
-import Users from '.\\Components/Users.js'
-import CreateVote from '.\\Components/CreateVote.js'
+import Navbar from './Components/Navbar.js'
+import Votes from './Components/Votes.js'
+import LoginForm from './Components/LoginForm.js'
+import Users from './Components/Users.js'
+import CreateVote from './Components/CreateVote.js'
+import Accueil from './Components/Accueil.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import CreateAccountForm from '.\\Components/CreateAccountForm.js'
+import CreateAccountForm from './Components/CreateAccountForm.js'
 import DetailsVote from './Components/DetailsVote.js'
 import './Components/Style.css'
 import 'font-awesome/css/font-awesome.min.css';
@@ -25,7 +26,7 @@ function App() {
     <Navbar/>
      
     
-    <Route exact path="/"/>
+    <Route exact path="/Accueil" componen={Accueil}/>
     <Route path="/Votes" component={Votes}/>
     <Route path="/LoginForm" exact component={LoginForm}/>
     <Route path="/CreateAccountForm" component={CreateAccountForm}/>

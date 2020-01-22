@@ -1,5 +1,6 @@
 body {
     background-color: white;
+    color: black;
 }
 
 #progress{
@@ -75,3 +76,22 @@ progress span{
     color: black;
 }
 
+.navbar-light .navbar-nav .nav-link{
+    color: black !important;
+}
+
+
+.test .nav-link {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-align: center !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.center-block {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+ }

@@ -1,16 +1,10 @@
 import React from 'react'
 import { Button, Form } from 'react-bootstrap'
-import LoginForm from '.\\LoginForm'
+import LoginForm from './LoginForm'
 import { connect } from 'react-redux'
+import { withRouter } from "react-router-dom";
 
 
-function ButTest(props) {
-  return (
-    <Button onClick={props.onClick}>
-    test console
-    </Button>
-  )
-}
 function VoteCreated(props) {
   return (
     <Button onClick={props.onClick}>
@@ -77,6 +71,9 @@ function VoteCreated(props) {
         "Access-Control-Request-Method": "POST",
         "Access-Control-Allow-Origin": "*"
       }
+    }) .then(response => response.json())
+    .then(response => {
+      this.props.history.push("/some/Path");
     })
     console.log(this.state.nameVote)
     console.log(this.state.description)
@@ -89,9 +86,7 @@ function VoteCreated(props) {
     console.log(this.props.Token)
   
     let button
-    let butTest
 
-    butTest = <ButTest onClick={this.handleproposalOne}/>
     button = <VoteCreated onClick={this.handleSubmit} />
 
     if(this.props.ConnectState == true){
@@ -111,7 +106,6 @@ function VoteCreated(props) {
       
       <Form.Label>Description</Form.Label>
       <Form.Control type="text" placeholder="Description du vote" value={this.state.value} onChange={this.handleDescription}/>
-      {butTest}
       {button}
       </Form>
       
@@ -136,5 +130,5 @@ function VoteCreated(props) {
   }
   
   
-  export default connect(mapStateToProps)(CreateVote);
+  export default connect(mapStateToProps)(withRouter(CreateVote));
   

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {BrowserRouter, Route } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import Post from '.\\Post.js';
+import Post from './Post.js';
 
 class Home extends Component{
     
