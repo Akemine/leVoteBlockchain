@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import LocalStorage from '.\\LocalStorage.js';
 import { Button, Form } from 'react-bootstrap'
 import {withRouter} from 'react-router'
 import { connect } from 'react-redux'

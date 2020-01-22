@@ -1,4 +1,77 @@
 body {
-    background-color: steelblue;
-    color: white;
+    background-color: white;
 }
+
+#progress{
+    width: 300px;
+    margin: auto;
+}
+progress{
+    display: inline-block;
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
+    width: 300px;
+    height: 20px;
+    padding: 3px 3px 2px 3px;
+    background: #333; 
+    background: -webkit-linear-gradient(#2d2d2d,#444);
+    background:    -moz-linear-gradient(#2d2d2d,#444);
+    background:      -o-linear-gradient(#2d2d2d,#444);
+    background:         linear-gradient(#2d2d2d,#444);
+    border: 1px solid rgba(0,0,0,.5);
+    border-radius: 15px;
+    box-shadow: 0 1px 0 rgba(255,255,255,.2);   
+}
+
+/* Enlève la couleur d'arrière-plan */
+progress::-webkit-progress-bar{
+    background: transparent;
+}
+
+progress[value='100'] span{
+    width: 100%;
+}
+progress[value^='9']:not([value^='9.']):not([value='9']) span{
+    width: 95%;
+}
+progress[value^='8']:not([value^='8.']):not([value='8']) span{
+    width: 85%;
+}
+progress[value^='7']:not([value^='7.']):not([value='7']) span{
+    width: 75%;
+}
+progress[value^='6']:not([value^='6.']):not([value='6']) span{
+    width: 65%;
+}
+progress[value^='5']:not([value^='5.']):not([value='5']) span{
+    width: 55%;
+}
+progress[value^='4']:not([value^='4.']):not([value='4']) span{
+    width: 45%;
+}
+progress[value^='3']:not([value^='3.']):not([value='3']) span{
+    width: 35%;
+}
+progress[value^='2']:not([value^='2.']):not([value='2']) span{
+    width: 25%;
+}
+progress[value^='1']:not([value^='1.']):not([value='1']):not([value='100']) span{
+    width: 15%;
+}
+
+progress span{
+    -webkit-transition: width 1.6s linear;
+        -moz-transition: width 1.6s linear;
+          -o-transition: width 1.6s linear;
+             transition: width 1.6s linear;
+    }
+
+
+.voteItem{
+    color: black;
+    text-decoration: none;
+}
+.voteItem:hover{
+    color: black;
+}
+

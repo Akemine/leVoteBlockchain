@@ -1,13 +1,42 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router'
-import { Link } from "react-router-dom";
-import { Button } from 'react-bootstrap'
-import DetailsVote from './DetailsVote';
+import { Button, Alert} from 'react-bootstrap'
 import { connect } from 'react-redux'
-import {BrowserRouter, Route } from 'react-router-dom';
 import LoginForm from '.\\LoginForm';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
-
+let timerInterval
+function Interval(props){
+  return (
+         Swal.fire({
+           title: 'Nous sécurisons votre vote !',
+           html: 'Fin dans <b></b> ms.',
+           timer: 20000,
+           timerProgressBar: true,
+           onBeforeOpen: () => {
+             Swal.showLoading()
+             timerInterval = setInterval(() => {
+               if (Swal.getContent()) {
+                 Swal.getContent().querySelector('b')
+                   .textContent = Swal.getTimerLeft()
+               }
+             }, 100)
+           },
+           onClose: () => {
+             clearInterval(timerInterval)
+           }
+          
+         }).then((result) => {
+           if (
+             /* Read more about handling dismissals below */
+             result.dismiss === Swal.DismissReason.timer
+           ) {
+             console.log('I was closed by the timer') // eslint-disable-line
+           }
+        })
+  )
+}
 
 class Votes extends Component {
 
@@ -48,7 +77,11 @@ class Votes extends Component {
         var {isLoaded, items} = this.state; 
       console.log(this.state.items)
       if (!isLoaded){
-        return <div>Loading...</div>
+        return <div>
+
+        {}
+
+        </div>
       }
       else {
 
@@ -59,14 +92,29 @@ class Votes extends Component {
         <div className="App">
         
          <div className="container">
-        <Button href=" /CreateVote">Créer un vote</Button>
+        <a href=" /CreateVote"></a>
         
         
 
         </div>
         <ul> 
           {items.map(item => (
-            <a href={"/DetailsVote?address=" + item.address + ""}> <li key={item.address}>{item.name}</li></a>
+
+            <div className="container">
+
+
+          <Alert variant="success">
+          <a class="voteItem" href={"/DetailsVote?address=" + item.address + ""}>
+            <Alert.Heading>{item.name}</Alert.Heading>
+            <p>
+              Description du vote : {item.description}
+            </p>
+            <hr />
+            <p className="mb-0">
+          Date de clôture : {item.end_date}
+            </p></a>
+          </Alert>
+          </div>
             
           ))}
           

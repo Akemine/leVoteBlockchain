@@ -2,18 +2,6 @@ import React from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { connect } from 'react-redux'
 
-// let username = "IciCParis";
-
-
-// let email = "dav@gmail.com";
-// let password = "david";
-
-
-// let user = ""
-// let index = 1
-
-// let IsConnected = isConnected
-
 let address =""
 let token = "";
 let userData = ""
@@ -83,7 +71,6 @@ class LoginForm extends React.Component {
     console.log(token)
     console.log("Vous êtes connecté.")
     this.setState({isConnected: true})
-    //console.log(this.state)
   })
   event.preventDefault();
 }
@@ -121,7 +108,6 @@ class LoginForm extends React.Component {
        {button}
        
        </Form>
-       <button onClick={this.ConnectClick}>Je me connecte</button>
        
         </div>
      )
@@ -143,7 +129,6 @@ class LoginForm extends React.Component {
       </Form.Group>
       {button}
       </Form>
-      <button onClick={this.DisconnectClick}>Je me deconnecte !</button>
       
        </div>
       )

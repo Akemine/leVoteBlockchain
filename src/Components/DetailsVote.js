@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router'
-import { Link } from "react-router-dom";
 import { Button } from 'react-bootstrap'
 import LoginForm from '.\\LoginForm';
 import { connect } from 'react-redux'
-import AVoter from './AVoter';
+import Apex from './ApexChart.js'
+import Chart from "react-apexcharts";
 
 import Swal from 'sweetalert2'
 
@@ -22,7 +22,11 @@ class DetailsVote extends Component{
           vote_count: [],
           items: [],
           isLoaded: false,
-          nameVote: ""
+          nameVote: "",
+          description: "",
+          options: {},
+          series: [44, 55, 41, 17, 15],
+          labels: ['A', 'B', 'C', 'D', 'E']
         }
       }
       
@@ -45,10 +49,10 @@ class DetailsVote extends Component{
             isLoaded: true,
             nameVote: json ["name"],
             items: json["_proposals"],
-            vote_count: json["_proposals"]["vote_count"]
+            vote_count: json["_proposals"]["vote_count"],
+            description: json["description"]
           })
         })
-        console.log("props : " + this.state)
       }
 
        handleSubmit = (event) => {
@@ -71,75 +75,47 @@ class DetailsVote extends Component{
         .then(response => {
 
         })
-        // let timerInterval
-        // Swal.fire({
-        //   title: 'Nous sécurisons votre vote !',
-        //   html: 'Fin dans <b></b> ms.',
-        //   timer: 20000,
-        //   timerProgressBar: true,
-        //   onBeforeOpen: () => {
-        //     Swal.showLoading()
-        //     timerInterval = setInterval(() => {
-        //       if (Swal.getContent()) {
-        //         Swal.getContent().querySelector('b')
-        //           .textContent = Swal.getTimerLeft()
-        //       }
-        //     }, 100)
-        //   },
-        //   onClose: () => {
-        //     clearInterval(timerInterval)
-        //   }
-          
-        // }).then((result) => {
-        //   if (
-        //     /* Read more about handling dismissals below */
-        //     result.dismiss === Swal.DismissReason.timer
-        //   ) {
-        //     console.log('I was closed by the timer') // eslint-disable-line
-        //   }
-        // })
         event.preventDefault();
       }
 
  
 
     render(){  
-      //console.log("props : " + this.props)
-     //console.log(this.props.Address_User)
-      
-        var {isLoaded, items} = this.state;
+        var {items} = this.state;
 
-        // const detail = this.props.detail ? (
-        //     <div className="detail">
-        //     <h2>{this.props.detail.adress}</h2>
-        //     <p>{this.props.detail.description}</p>
-            
-        //     </div>
-        // ) : (
-        //     <p>Le vote n'existe pas</p>
-        //     )
-        console.log(this.state.items)
+        
         if(this.props.ConnectState == true){
+            let vote_count_array = []
+            let proposal_name_array = []
+            items.map(item => {
+              vote_count_array.push(item.vote_count)
+              proposal_name_array.push(item.name)
+              
+            })
+            console.log(vote_count_array)
             return (
-                <div className="home">
+                <div className="container">
                   <h2>{this.state.nameVote}</h2>
-                  {items.map(item => (
-                    <div>
-                    
-                    <p><Button onClick={this.handleSubmit} vote={item.vote_count} id={item.index}>{item.name}</Button> {this.state.vote_count = item.vote_count} </p>
-                   
+                  <h4>{this.state.description}</h4>
+                  <div className="row">
+                    {items.map(item => (
+                      
+                        <div className="col-md-3 mb-4">
+                          <Button onClick={this.handleSubmit} vote={item.vote_count} id={item.index}>
+                            <span>
+                            {item.name}
+                            </span>
+                            <i className="fa fa-paper-plane"></i>
+                          </Button> 
+                        </div>
 
+                      ))}
                     </div>
-                    )
-                    )
-                    }
-       
+                    <Apex series={vote_count_array}/>
                 </div>
+                            
                     )
-                
-                
-                
-                
+
                     }
                     else {
                       return(

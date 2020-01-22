@@ -1,19 +1,15 @@
-import React from 'react';
-import {BrowserRouter, Route } from 'react-router-dom';
-import Navbar from '.\\Components/Navbar.js';
-import Home from '.\\Components/Home.js';
-
-import Votes from '.\\Components/Votes.js';
-import LoginForm from '.\\Components/LoginForm.js';
-import Users from '.\\Components/Users.js';
-import NewUser from '.\\Components/NewUser.js';
-import FakerTest from '.\\Components/FakerTest.js';
-import CreateVote from '.\\Components/CreateVote.js';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import CreateAccountForm from '.\\Components/CreateAccountForm.js';
-import DetailsVote from '.\\Components/DetailsVote.js';
-import AVoter from '.\\Components/AVoter.js';
-//import Test from '.\\Components/Test.js';
+import React from 'react'
+import {BrowserRouter, Route } from 'react-router-dom'
+import Navbar from '.\\Components/Navbar.js'
+import Votes from '.\\Components/Votes.js'
+import LoginForm from '.\\Components/LoginForm.js'
+import Users from '.\\Components/Users.js'
+import CreateVote from '.\\Components/CreateVote.js'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import CreateAccountForm from '.\\Components/CreateAccountForm.js'
+import DetailsVote from './Components/DetailsVote.js'
+import './Components/Style.css'
+import 'font-awesome/css/font-awesome.min.css';
 
 
 
@@ -27,16 +23,13 @@ function App() {
    
     <div className="App">
     <Navbar/>
-    {/* <Route path="/Test" component={Test}/> */}
+     
     
     <Route exact path="/"/>
-    <Route path="/AVoter" component={AVoter}/>
     <Route path="/Votes" component={Votes}/>
     <Route path="/LoginForm" exact component={LoginForm}/>
     <Route path="/CreateAccountForm" component={CreateAccountForm}/>
     <Route path="/Users" component={Users}/>
-    <Route path="/NewUser" component={NewUser}/>
-    <Route path="/FakerTest" component={FakerTest}/>
     <Route path="/CreateVote" component={CreateVote}/>
     <Route path="/DetailsVote" component={DetailsVote}/>
     
