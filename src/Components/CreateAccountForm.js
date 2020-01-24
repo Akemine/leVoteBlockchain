@@ -42,7 +42,7 @@ import { connect } from 'react-redux'
             }
             
             handleSubmit = (event) => {
-                let index = 4;
+                let index = 20;
                 fetch('http://localhost:5000/users/create', {
                 method: "POST",
                 body: JSON.stringify({

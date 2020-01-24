@@ -7,17 +7,23 @@ class Apex extends Component {
         super(props);
         
         this.state = {
-          options: {},
+          options: {
+            labels: ['A','A','B','D']
+          },
           
-          series: [],
-          labels: ['A', 'B', 'C', 'D']
+          series: []
         }
       }
     
       render() {
-        console.log(this.props)
+        console.log(this.state.options)
         this.state.series = this.props.series
-        
+        // this.setState({
+        //   options: {
+        //     labels: []
+        //   }
+        // })
+        this.state.options.labels = this.props.labels
         return (
           <div>
           <div class="donut pull-right">

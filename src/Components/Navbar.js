@@ -28,8 +28,8 @@ class MaNav extends React.Component {
         </Nav>
         <Form inline>
         
-        <Nav.Link href=" /LoginForm">Déjà inscrit</Nav.Link>
-        <Nav.Link href=" /CreateAccountForm">S'inscrire</Nav.Link>
+        <Nav.Link href=" /LoginForm">Je me connecte</Nav.Link>
+
         </Form>
     </Navbar.Collapse>
     </Navbar>
@@ -53,7 +53,7 @@ class MaNav extends React.Component {
                 
                 </Nav>
                 <Form inline>
-                <p class="mr-5 badge badge-active badge-dark">Utilisateur : {this.props.Pseudo}</p>
+                <i class="mr-2 mb-3 fa fa-user"></i><p class="mr-5 ">Bonjour, {this.props.Pseudo}</p>
                 <p>
                 <button className="btn btn-danger" onClick={this.DisconnectClick}>Deconnexion</button>
                 </p>

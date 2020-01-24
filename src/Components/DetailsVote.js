@@ -111,7 +111,7 @@ class DetailsVote extends Component{
 
                       ))}
                     </div>
-                    <Apex series={vote_count_array}/>
+                    <Apex labels={proposal_name_array} series={vote_count_array}/>
                 </div>
                             
                     )
